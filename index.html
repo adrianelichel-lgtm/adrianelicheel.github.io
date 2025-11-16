@@ -510,7 +510,41 @@
         <p><a href="https://www.facebook.com/share/1ABJrDALaR/" target="_blank">Facebook</a></p>
       </div>
       <div class="contacto-form">
-        <form action="https://formsubmit.co/tuemail@dominio.com" method="POST">
+  <form id="whatsappForm">
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="tel" id="telefono" placeholder="Teléfono" required>
+    <select id="curso">
+      <option value="">Curso de interés</option>
+      <option value="Inteligencia Artificial">Inteligencia Artificial</option>
+      <option value="Excel + IA">Excel + IA</option>
+      <option value="Photoshop + IA">Photoshop + IA</option>
+      <option value="Illustrator + IA">Illustrator + IA</option>
+      <option value="SketchUp + V-Ray + IA">SketchUp + V-Ray + IA</option>
+      <option value="AutoCAD 2D + IA">AutoCAD 2D + IA</option>
+      <option value="Revit + BIM + IA">Revit + BIM + IA</option>
+    </select>
+    <textarea id="mensaje" rows="3" placeholder="Mensaje (opcional)"></textarea>
+    <button type="submit" class="btn">Enviar por WhatsApp</button>
+  </form>
+</div>
+
+<!-- SCRIPT PARA ENVIAR POR WHATSAPP -->
+<script>
+  document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const telefono = document.getElementById('telefono').value;
+    const curso = document.getElementById('curso').value || 'no especificado';
+    const mensaje = document.getElementById('mensaje').value || 'Sin mensaje';
+
+    const texto = `¡Hola! Me gustaría recibir información sobre: *${curso}*.\n\nNombre: ${nombre}\nTeléfono: ${telefono}\nMensaje: ${mensaje}`;
+    const telefonoDestino = '525562482314'; // Código de país + número (sin espacios)
+    const url = `https://wa.me/${telefonoDestino}?text=${encodeURIComponent(texto)}`;
+
+    window.open(url, '_blank');
+  });
+</script>
           <input type="text" name="nombre" placeholder="Nombre" required>
           <input type="email" name="email" placeholder="Correo electrónico" required>
           <input type="tel" name="telefono" placeholder="Teléfono">
